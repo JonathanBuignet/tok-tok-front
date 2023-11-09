@@ -1,5 +1,4 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-
 import { Advert } from '../../@types';
 import { Publication } from '../../@types/publication';
 import axiosInstance from '../../utils/axios';
@@ -42,7 +41,7 @@ export const initialState: ProfileState = {
 
 export const fetchProfile = createAsyncThunk(
   'profile/fetchProfile',
-  async (slug: string | undefined) => {
+  async (slug: string) => {
     try {
       const { data } = await axiosInstance.get(`/profile/${slug}`);
       return data;

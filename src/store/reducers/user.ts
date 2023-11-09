@@ -3,7 +3,6 @@ import {
   createAsyncThunk,
   createReducer,
 } from '@reduxjs/toolkit';
-
 import axiosInstance from '../../utils/axios';
 
 interface UserState {
@@ -75,7 +74,7 @@ export const signup = createAsyncThunk(
       const objData = Object.fromEntries(formData);
       // On lance l'appel avec l'objet en payload
       const { data } = await axiosInstance.post('/signup', objData);
-      // On place de bearer un en-tête de l'instance axios 
+      // On place de bearer un en-tête de l'instance axios
       // pour assurer l'authentification de l'utilisateur pour les prochaines requêtes
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
       return data as {
@@ -123,13 +122,13 @@ export const editBanner = createAsyncThunk(
 const userReducer = createReducer(initialState, (builder) => {
   builder
     // Pendant le temps du traitement de la requête :
-    // - on change le state isLoading à true 
+    // - on change le state isLoading à true
     // - on réinitialise l'error à l'état initial soit à ""
     .addCase(login.pending, (state) => {
       state.isLoading = true;
       state.error = initialState.error;
     })
-    // Si la requête abouti : 
+    // Si la requête abouti :
     // - on enregistre les données de l'utilisateur, reçues dans l'objet data
     // - on change isLoading à false et loggued à true
     // - on enregistre le token pour le stocker dans le localStorage
@@ -151,9 +150,9 @@ const userReducer = createReducer(initialState, (builder) => {
       state.email = action.payload.user.email;
       state.banner = action.payload.user.banner;
     })
-    // Si la requête échoue : 
+    // Si la requête échoue :
     // - on rechange isLoading à false
-    // - on stocke l'erreur pour l'afficher 
+    // - on stocke l'erreur pour l'afficher
     .addCase(login.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
@@ -216,8 +215,6 @@ const userReducer = createReducer(initialState, (builder) => {
     })
     .addCase(editBanner.fulfilled, (state, action) => {
       state.banner = action.payload.banner;
-      // console.log('bruce', action.payload);
-      // console.log('banner', state.banner);
     })
     .addCase(edit.pending, (state) => {
       state.isLoading = false;

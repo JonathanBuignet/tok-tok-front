@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {
@@ -8,23 +10,17 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Advert } from '../../@types';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchUserAdverts } from '../../store/reducers/adverts';
+import { useAppSelector } from '../../hooks/redux';
 import { findAdvert } from '../../store/selectors/adverts';
-import { calculateTimeSpent } from '../../utils/date';
-import formatDate from '../../utils/date2';
+import calculateTimeSpent from '../../utils/date';
 import { calculateDistance } from '../../utils/gps';
 import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 import ContactModal from '../Modals/ContactModal/ContactModal';
 import TriplePointButton from '../TriplePointButton/TriplePointButton';
 import SeparateBar from './SeparateBar/SeparateBar';
 
-export default function Annonce({ created_at }: Advert) {
+export default function Advert() {
   const userState = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
   const { slug } = useParams();
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
@@ -33,7 +29,7 @@ export default function Annonce({ created_at }: Advert) {
   const [indexImg, setIndexImg] = useState(0);
 
   const handleClickNext = () => {
-    if (indexImg === advert?.images.length - 1) {
+    if (advert?.images && indexImg === advert.images.length - 1) {
       setIndexImg(0);
     } else {
       setIndexImg(indexImg + 1);
@@ -41,8 +37,8 @@ export default function Annonce({ created_at }: Advert) {
   };
 
   const handleClickPrevious = () => {
-    if (indexImg === 0) {
-      setIndexImg(advert?.images.length - 1);
+    if (advert?.images && indexImg === 0) {
+      setIndexImg(advert.images.length - 1);
     } else {
       setIndexImg(indexImg - 1);
     }
@@ -56,21 +52,17 @@ export default function Annonce({ created_at }: Advert) {
   );
 
   const context = 'advert';
-  const date = formatDate(created_at);
-
-  const userId = advert?.advert_creator.id;
 
   if (!advert) {
-    // eslint-disable-next-line @typescript-eslint/no-throw-literal
-    throw new Response('', {
-      status: 404,
-      statusText: 'Not Found',
-    });
+    throw new Error(
+      JSON.stringify(
+        new Response('', {
+          status: 404,
+          statusText: 'Not Found',
+        })
+      )
+    );
   }
-
-  useEffect(() => {
-    dispatch(fetchUserAdverts(userId));
-  }, [dispatch, userId]);
 
   const adverts = useAppSelector((state) => state.adverts.userAdverts);
   return (
@@ -133,9 +125,7 @@ export default function Annonce({ created_at }: Advert) {
             >
               Il y a {calculateTimeSpent(advert.created_at)}
             </Typography>
-
           </Stack>
-          {/* <FavouriteButton2 id={id} favorited_by={favorited_by} /> */}
           <TriplePointButton
             id={advert.id}
             context={context}
@@ -152,16 +142,16 @@ export default function Annonce({ created_at }: Advert) {
             pb: '2.5rem',
           }}
         >
-          {advert.images.length > 1 && (
+          {advert?.images && advert.images.length > 1 && (
             <IconButton aria-label="delete" onClick={handleClickPrevious}>
               <ArrowBackIosIcon />
             </IconButton>
           )}
           <img
             src={
-              advert.images.length === 0
-                ? 'http://localhost:3000/images/default-advert-picture.png'
-                : advert.images[indexImg].thumbnail
+              advert?.images?.length === 0
+                ? 'https://tok-tok-api.onrender.com/images/default-advert-picture.png'
+                : advert?.images?.[indexImg]?.thumbnail
             }
             alt="images advert"
             style={{
@@ -170,7 +160,7 @@ export default function Annonce({ created_at }: Advert) {
               borderRadius: '2rem',
             }}
           />
-          {advert.images.length > 1 && (
+          {advert?.images && advert.images.length > 1 && (
             <IconButton aria-label="delete" onClick={handleClickNext}>
               <ArrowForwardIosIcon />
             </IconButton>
@@ -204,7 +194,6 @@ export default function Annonce({ created_at }: Advert) {
               fontWeight: 600,
               lineHeight: 'normal',
               textAlign: 'right',
-              // mr: '9rem',
             }}
           >
             {advert.price} €
@@ -260,8 +249,6 @@ export default function Annonce({ created_at }: Advert) {
               align="center"
               width="center"
               sx={{
-                // display: 'flex',
-                // justifyContent: 'center',*
                 fontFamily: 'Manrope',
                 fontSize: '1.3rem',
                 fontStyle: 'normal',

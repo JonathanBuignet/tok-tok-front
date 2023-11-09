@@ -1,9 +1,9 @@
+import { useState, MouseEvent } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import settings from '../../assets/icons/settings.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
@@ -13,11 +13,16 @@ import {
 } from '../../store/reducers/adverts';
 import { delPost, fetchPosts } from '../../store/reducers/publications';
 import EditAdvertModal from '../Modals/EditAdvertModal/EditAdvertModal';
+import { AdvertCreator } from '../../@types';
+import { Creator } from '../../@types/publication';
+import { fetchProfile } from '../../store/reducers/profile';
 
 interface MenuProps {
   id: number;
-  advert_creator: [];
-  post_creator: [];
+  // eslint-disable-next-line react/require-default-props
+  advert_creator?: AdvertCreator;
+  // eslint-disable-next-line react/require-default-props
+  post_creator?: Creator;
   context: string;
 }
 
@@ -42,7 +47,7 @@ export default function TriplePointButton({
   const isCurrentUserCreator =
     post_creator?.id === userInfo.id || advert_creator?.id === userInfo.id;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -58,11 +63,18 @@ export default function TriplePointButton({
       await dispatch(delAdvert(id));
       await dispatch(fetchFavourites());
       await dispatch(fetchAdverts());
+    } else if (context === 'profile') {
+      await dispatch(delAdvert(id));
+      await dispatch(fetchProfile(userInfo.slug));
     } else if (context === 'advert') {
       await dispatch(delAdvert(id));
       navigate('/adverts');
     }
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    // await new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(resolve);
+    //   }, 800);
+    // });
   };
 
   const handleClickUpd = () => {
