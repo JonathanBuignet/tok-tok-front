@@ -37,14 +37,15 @@ export default function AdvertCard({
   //     : 'https://tok-tok-api.onrender.com/images/default-advert-picture.png';
 
   return (
-    <Paper
+    <Stack
       className="advert-card"
-      elevation={1}
+      // elevation={1}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
+        backgroundColor: 'white',
         width: '30rem',
         height: '34rem',
         mx: 'auto',
@@ -208,6 +209,6 @@ export default function AdvertCard({
           </Typography>
         </Stack>
       </Stack>
-    </Paper>
+    </Stack>
   );
 }
