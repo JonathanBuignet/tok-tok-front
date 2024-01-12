@@ -39,7 +39,7 @@ export default function AdvertCard({
   return (
     <Paper
       className="advert-card"
-      elevation={0}
+      elevation={1}
       sx={{
         display: 'flex',
         flexDirection: 'column',
