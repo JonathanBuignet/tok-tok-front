@@ -14,7 +14,7 @@ export default function AdvertCard({
   advert_creator,
   title,
   slug,
-  images,
+  // images,
   created_at,
   favorited_by,
   tag,
@@ -31,10 +31,10 @@ export default function AdvertCard({
     advert_creator.longitude
   );
 
-  const thumbnailSrc =
-    images && images.length > 0
-      ? images[0].thumbnail
-      : 'https://tok-tok-api.onrender.com/images/default-advert-picture.png';
+  // const thumbnailSrc =
+  //   images && images.length > 0
+  //     ? images[0].thumbnail
+  //     : 'https://tok-tok-api.onrender.com/images/default-advert-picture.png';
 
   return (
     <Paper
@@ -62,11 +62,11 @@ export default function AdvertCard({
       >
         <Stack direction="row" alignItems="center" gap="1rem" flex="1">
           {/* Avatar */}
-          <Avatar
+          {/* <Avatar
             alt="photo de profil"
             src={advert_creator.thumbnail}
             sx={{ width: '4rem', height: '4rem' }}
-          />
+          /> */}
           <Stack direction="column" gap="0.3rem">
             <Typography
               sx={{
@@ -111,7 +111,7 @@ export default function AdvertCard({
         />
       </Stack>
       {/* Lien + image */}
-      <Link to={`/adverts/${slug}`}>
+      {/* <Link to={`/adverts/${slug}`}>
         <img
           src={thumbnailSrc}
           style={{
@@ -122,7 +122,7 @@ export default function AdvertCard({
           }}
           alt="advert illustration"
         />
-      </Link>
+      </Link> */}
       <Stack direction="row" justifyContent="space-between" width="100%">
         <Typography
           sx={{
