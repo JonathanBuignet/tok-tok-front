@@ -24,6 +24,7 @@ interface MenuProps {
   // eslint-disable-next-line react/require-default-props
   post_creator?: Creator;
   context: string;
+  // title: string;
 }
 
 export default function TriplePointButton({
@@ -31,7 +32,8 @@ export default function TriplePointButton({
   context,
   advert_creator,
   post_creator,
-}: MenuProps) {
+}: // title,
+MenuProps) {
   const userInfo = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -123,6 +125,7 @@ export default function TriplePointButton({
                   component="form"
                   onClick={handleClickUpd}
                   data-id={id}
+                  // data-title={title}
                   sx={{ justifyContent: 'start' }}
                 >
                   <img

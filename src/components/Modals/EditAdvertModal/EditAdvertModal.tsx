@@ -8,13 +8,15 @@ interface EditAdvertModalProps {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
   id: number;
+  // title: string;
 }
 
-export default function EditProfileModal({
+export default function EditAdvertModal({
   openModal,
   setOpenModal,
   id,
-}: EditAdvertModalProps) {
+}: // title,
+EditAdvertModalProps) {
   const dispatch = useAppDispatch();
 
   const handleCloseModal = () => setOpenModal(false);
@@ -42,10 +44,11 @@ export default function EditProfileModal({
       aria-describedby="modal-modal-edit"
     >
       <Box
+        className="edit-advert-modal-container"
         sx={{
           backgroundColor: 'transparent',
           margin: 'auto',
-          width: '50%',
+          width: '30%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -55,13 +58,16 @@ export default function EditProfileModal({
         <Box
           sx={{
             backgroundColor: 'white',
-            width: '80%',
+            width: '100%',
             m: 'auto',
             p: '5rem',
             borderRadius: '2rem',
           }}
         >
-          <EditAdvertModalForm id={id} />
+          <EditAdvertModalForm
+            id={id}
+            // title={title}
+          />
         </Box>
       </Box>
     </Modal>

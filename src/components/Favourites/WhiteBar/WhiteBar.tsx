@@ -1,12 +1,12 @@
 import { Stack, Typography } from '@mui/material';
 
-function WhiteBar() {
+function WhiteBar({ name }: { name: string }) {
   return (
     <Stack
       direction="row"
       justifyContent="center"
       alignItems="center"
-      padding="1rem"
+      padding="2rem"
       sx={{
         width: '100%',
         height: '7rem',
@@ -26,7 +26,7 @@ function WhiteBar() {
           p: '1rem',
         }}
       >
-        Favoris
+        {name}
       </Typography>
     </Stack>
   );

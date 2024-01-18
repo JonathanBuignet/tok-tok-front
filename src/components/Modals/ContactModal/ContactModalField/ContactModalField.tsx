@@ -16,6 +16,7 @@ function ContactModalField({ name, type, autoComplete, ...props }: FieldProps) {
   return (
     <TextField
       margin="normal"
+      multiline
       required
       fullWidth
       label={name}

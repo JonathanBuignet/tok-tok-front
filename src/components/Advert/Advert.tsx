@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -10,7 +10,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { findAdvert } from '../../store/selectors/adverts';
 import calculateTimeSpent from '../../utils/date';
 import { calculateDistance } from '../../utils/gps';
@@ -18,13 +18,23 @@ import ContentUserAdvert from '../Adverts/ContentUserAdvert/ContentUserAdvert';
 import ContactModal from '../Modals/ContactModal/ContactModal';
 import TriplePointButton from '../TriplePointButton/TriplePointButton';
 import SeparateBar from './SeparateBar/SeparateBar';
+import { fetchUserAdverts } from '../../store/reducers/adverts';
 
 export default function Advert() {
   const userState = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
   const { slug } = useParams();
   const advert = useAppSelector((state) =>
     findAdvert(state.adverts.list, slug as string)
   );
+  const advertCreator = advert?.advert_creator.id;
+
+  useEffect(() => {
+    if (advertCreator) {
+      dispatch(fetchUserAdverts(advertCreator));
+    }
+  }, [dispatch, advertCreator]);
 
   const [indexImg, setIndexImg] = useState(0);
 
@@ -73,7 +83,7 @@ export default function Advert() {
         flexDirection: 'column',
         width: '82rem',
         position: 'relative',
-        top: '11rem',
+        top: '13rem',
         margin: 'auto',
         gap: '2.5rem',
         paddingBottom: '10rem',
@@ -128,6 +138,7 @@ export default function Advert() {
           </Stack>
           <TriplePointButton
             id={advert.id}
+            // title={advert.title}
             context={context}
             advert_creator={advert.advert_creator}
           />
@@ -136,8 +147,9 @@ export default function Advert() {
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             borderRadius: '2rem',
+            mx: 'auto',
             pt: '2rem',
             pb: '2.5rem',
           }}
@@ -155,7 +167,7 @@ export default function Advert() {
             }
             alt="images advert"
             style={{
-              maxHeight: '50rem',
+              maxHeight: '40rem',
               objectFit: 'contain',
               borderRadius: '2rem',
             }}

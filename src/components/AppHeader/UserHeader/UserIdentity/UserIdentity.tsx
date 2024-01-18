@@ -1,8 +1,6 @@
 import { Avatar, Typography } from '@mui/material';
 import { useAppSelector } from '../../../../hooks/redux';
 
-import '../../style.scss';
-
 export default function UserIdentity() {
   const loggedPseudo = useAppSelector((state) => {
     const fullName = `${state.user.firstname} ${state.user.lastname}`;

@@ -4,8 +4,6 @@ import AccueilLogo from './AccueilLogo/AccueilLogo';
 import ButtonToggle from './AccueilToggle/AccueilToggle';
 import Carrousel from './Carrousel/Carrousel';
 
-import './style.scss';
-
 export default function Accueil() {
   return (
     <Stack direction="row" width="100%">

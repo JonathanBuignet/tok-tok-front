@@ -8,6 +8,7 @@ import MenuContact from './MenuContact/MenuContact';
 import Messages from './Messages/Messages';
 
 import '../App/style.scss';
+import WhiteBar from '../Favourites/WhiteBar/WhiteBar';
 
 export default function Messagerie() {
   const [destinataireId, setDestinataireId] = useState(0);
@@ -28,30 +29,44 @@ export default function Messagerie() {
   };
 
   return (
-    <div className="messages-container">
+    <Stack
+      className="messages-container"
+      sx={{
+        height: '85vh',
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: '11rem',
+        gap: '2rem',
+      }}
+    >
+      <WhiteBar name="Messagerie" />
       {contacts.length > 0 ? (
+        // L'esenmble des blocs
         <Stack
           direction="row"
-          sx={{
-            height: '100%',
-            borderRadius: '1rem',
-          }}
+          height="100%"
+          width="100%"
+          gap="1rem"
+          marginBottom="2rem"
         >
           {/* Liste de contacts */}
-          <div
+          <Stack
             style={{
-              backgroundColor: '#03665c',
-              borderRadius: '12px',
-              maxWidth: '30%',
+              backgroundColor: 'white',
+              padding: '1.2rem',
+              width: isOpen ? '30%' : '10%',
+              borderRadius: '2rem',
             }}
             className={isOpen ? 'messages-contacts--open' : 'messages-contacts'}
           >
+            {/* bouton toggle liste */}
             <button
               type="button"
               style={{
                 display: 'flex',
-                justifyContent: 'right',
-                marginTop: '10px',
+                backgroundColor: 'transparent',
+                border: '0px',
               }}
               onClick={() => setIsOpen(!isOpen)}
               onKeyUp={handleKeyPress}
@@ -64,55 +79,75 @@ export default function Messagerie() {
                     : 'open-contact-button--is-open'
                 }
                 icon="solar:alt-arrow-right-line-duotone"
-                color="#fff"
+                color="#03665C"
                 fontSize="42px"
               />
             </button>
-            <div
+            {/* List des contacts */}
+            <Stack
               style={
                 isOpen
                   ? {
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '2rem',
-                      width: '300px',
+                      width: '100%',
                       height: '100%',
                       padding: '1rem',
+                      alignItems: 'center',
                     }
                   : { display: 'none' }
               }
             >
-              <div>
-                <MenuContact
-                  contacts={contacts}
-                  destinataireId={destinataireId}
-                  setDestinataireId={setDestinataireId}
-                  destinataireName={destinataireName}
-                  setDestinataireName={setDestinataireName}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div
+              <MenuContact
+                contacts={contacts}
+                destinataireId={destinataireId}
+                setDestinataireId={setDestinataireId}
+                destinataireName={destinataireName}
+                setDestinataireName={setDestinataireName}
+              />
+            </Stack>
+          </Stack>
+          {/* Panneau global de droite */}
+          <Stack
+            direction="column"
+            gap="1rem"
+            height="100%"
             className={isOpen ? 'messages-content--close' : 'messages-content'}
             style={{
               display: 'flex',
               flexDirection: 'column',
-              minWidth: '70%',
+              width: isOpen ? '70%' : '90%',
               height: '100%',
             }}
           >
+            {/* Barre destinataire */}
             <Stack
               direction="row"
               sx={{
                 backgroundColor: '#fff',
                 p: '1rem',
-                mb: '0.5rem',
-                pl: '2rem',
-                borderRadius: '1rem',
+                px: '2rem',
+                borderRadius: '2rem',
+                gap: '1rem',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                height: '10%',
               }}
             >
+              {/* Destinataire typo */}
+              <Typography
+                sx={{
+                  color: '#000',
+                  height: '4rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  fontSize: '2rem',
+                  fontFamily: 'DM Sans',
+                }}
+              >
+                Message de :
+              </Typography>
               <Typography
                 sx={{
                   color: 'primary.dark',
@@ -126,17 +161,17 @@ export default function Messagerie() {
                 {destinataireName}
               </Typography>
             </Stack>
-
-            <Paper
-              elevation={0}
+            {/* Messages */}
+            <Stack
               sx={{
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
                 p: '2rem',
-                borderRadius: '1rem',
-                height: '89.2%',
+                borderRadius: '2rem',
+                height: 'calc(90% - 1rem)',
+                backgroundColor: '#fff',
               }}
             >
               <Messages />
@@ -147,18 +182,22 @@ export default function Messagerie() {
               >
                 <Form destinataireId={destinataireId} />
               </Stack>
-            </Paper>
-          </div>
+            </Stack>
+          </Stack>
         </Stack>
       ) : (
         /* Composant quand pas de messages */
         <Box
-          width="80%"
+          width="100%"
           sx={{
-            backgroundColor: '#fff',
+            my: '2rem',
             borderRadius: '2rem',
-            margin: 'auto',
-            padding: '2rem',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '2rem',
+            justifyContent: 'flex-start',
+            backgroundColor: 'white',
+            padding: '3rem',
           }}
         >
           <Typography
@@ -177,6 +216,6 @@ export default function Messagerie() {
           </Typography>
         </Box>
       )}
-    </div>
+    </Stack>
   );
 }

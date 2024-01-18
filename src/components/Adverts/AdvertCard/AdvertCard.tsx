@@ -20,9 +20,11 @@ export default function AdvertCard({
   tag,
 }: Advert) {
   const userState = useAppSelector((state) => state.user);
+
   const location = useLocation();
   const isProfilePage = location.pathname === `/profil/${advert_creator.slug}`;
   const context = isProfilePage ? 'profile' : 'adverts';
+  const isFavouritesPage = location.pathname === '/favoris';
 
   const distance = calculateDistance(
     userState.latitude,
@@ -43,11 +45,6 @@ export default function AdvertCard({
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        width: '30rem',
-        height: '34rem',
-        mx: 'auto',
         borderRadius: '2rem',
         gap: '1.5rem',
         p: '2rem',
@@ -82,7 +79,8 @@ export default function AdvertCard({
                 style={{ textDecoration: 'none', color: '#000' }}
               >
                 {/* Nom de l'utilisateur */}
-                {advert_creator.firstname} {advert_creator.lastname}
+                {advert_creator.firstname}
+                {/* {advert_creator.lastname} */}
               </Link>
             </Typography>
             <Typography
@@ -102,21 +100,25 @@ export default function AdvertCard({
         </Stack>
         {/* Bookmark icon et del icon */}
         {/* {!isProfilePage && ( */}
-        <FavouriteButton id={id} favorited_by={favorited_by} />
+        <FavouriteButton
+          id={id}
+          favorited_by={favorited_by}
+          isFavouritesPage={isFavouritesPage}
+        />
         {/* )} */}
         <TriplePointButton
           id={id}
           advert_creator={advert_creator}
           context={context}
+          // title={title}
         />
       </Stack>
       {/* Lien + image */}
       <Link to={`/adverts/${slug}`}>
         <img
+          className="card-image"
           src={thumbnailSrc}
           style={{
-            height: '16rem',
-            width: '26rem',
             objectFit: 'cover',
             borderRadius: '2rem',
           }}

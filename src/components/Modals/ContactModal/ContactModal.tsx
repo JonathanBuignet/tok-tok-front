@@ -60,10 +60,12 @@ export default function ContactModal({ id }: ContactModalProps) {
         aria-describedby="modal-modal-description"
       >
         <Box
+          className="edit-contact-modal-container"
           sx={{
             backgroundColor: 'transparent',
             margin: 'auto',
-            width: '50%',
+            width: '40%',
+
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -73,7 +75,8 @@ export default function ContactModal({ id }: ContactModalProps) {
           <Box
             sx={{
               backgroundColor: 'white',
-              width: '80%',
+              width: '100%',
+
               m: 'auto',
               p: '5rem',
               borderRadius: '2rem',
@@ -116,6 +119,7 @@ export default function ContactModal({ id }: ContactModalProps) {
                 mt: '1rem',
                 p: '1.2rem',
                 boxShadow: 0,
+                width: '100%',
               }}
             >
               Envoyer

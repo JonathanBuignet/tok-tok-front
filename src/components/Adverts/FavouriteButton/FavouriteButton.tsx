@@ -11,7 +11,11 @@ import {
   fetchFavourites,
 } from '../../../store/reducers/adverts';
 
-export default function FavouriteButton({ id, favorited_by }: AdvertSubset) {
+export default function FavouriteButton({
+  id,
+  favorited_by,
+  isFavouritesPage,
+}: AdvertSubset) {
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.user.id);
 
@@ -23,7 +27,7 @@ export default function FavouriteButton({ id, favorited_by }: AdvertSubset) {
 
   const handleBookmarkClick = async () => {
     setBookmark(!bookmark);
-    if (bookmark === true) {
+    if (bookmark === false) {
       await dispatch(addFavourite(id));
       await dispatch(fetchFavourites());
       await dispatch(fetchAdverts());
@@ -34,6 +38,9 @@ export default function FavouriteButton({ id, favorited_by }: AdvertSubset) {
     }
   };
 
+  const buttonColor =
+    isFavouritesPage || isBookmarked ? 'secondary' : 'default';
+
   return (
     <div>
       <IconButton
@@ -42,9 +49,9 @@ export default function FavouriteButton({ id, favorited_by }: AdvertSubset) {
           p: '0.2rem',
         }}
         onClick={handleBookmarkClick}
-        color={isBookmarked ? 'secondary' : 'default'}
+        color={buttonColor}
       >
-        {isBookmarked ? (
+        {isBookmarked || isFavouritesPage ? (
           <BookmarkSharpIcon sx={{ fontSize: '3rem' }} />
         ) : (
           <BookmarkBorderSharpIcon sx={{ fontSize: '3rem' }} />

@@ -7,11 +7,10 @@ import Home from './MenuSVG/HomeSVG';
 import MessagerieSVG from './MenuSVG/MessagerieSVG';
 import ProfileSVG from './MenuSVG/ProfileSVG';
 
-import './style.scss';
-
 const listItemButtonStyles = {
   p: '1.5rem',
   borderRadius: '1.5rem',
+  flexGrow: '0',
   '&.active': {
     p: '1.5rem',
     backgroundColor: '#03665C',

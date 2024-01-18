@@ -39,10 +39,11 @@ export default function EditBannerModal({
       aria-describedby="modal-modal-edit"
     >
       <Box
+        className="edit-banner-modal-container"
         sx={{
           backgroundColor: 'transparent',
           margin: 'auto',
-          width: '50%',
+          width: '40%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -52,7 +53,7 @@ export default function EditBannerModal({
         <Box
           sx={{
             backgroundColor: 'white',
-            width: '80%',
+            width: '100%',
             m: 'auto',
             p: '5rem',
             borderRadius: '2rem',

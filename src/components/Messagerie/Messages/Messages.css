@@ -10,7 +10,7 @@
   text-align: right;
 }
 .messages-item--mine .messages-item__content {
-  background-color: #49c1ac;
+  background-color: #03665C;
 }
 .messages-item--mine .messages-item__author {
   margin-left: 0;
@@ -21,7 +21,7 @@
   margin-left: 2.5rem;
 }
 .messages-item__content {
-  background: #03665C;
+  background: #49c1ac;
   border-radius: 1.5rem;
   color: #fff;
   min-width: 10em;
@@ -29,4 +29,5 @@
   text-align: left;
   font-family: "DM Sans";
   display: inline-block;
+  word-break: break-all;
 }/*# sourceMappingURL=Messages.css.map */

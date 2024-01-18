@@ -15,13 +15,26 @@ export default function Favourites() {
     dispatch(fetchFavourites());
   }, [dispatch]);
 
+  const estPaire = favourites.length % 2 === 0;
+  const justifyContent = estPaire ? 'space-between' : 'flex-start';
+  const gap = estPaire ? '2rem' : '3.2rem';
+
   const favouritesList = favourites.map((e) => {
     return <AdvertCard key={e.id} {...e} />;
   });
 
   return (
-    <div className="favorites-container">
-      <WhiteBar />
+    <Box
+      className="favourite-container"
+      sx={{
+        height: '100vh',
+        width: '82rem',
+        position: 'relative',
+        padding: '11rem 0rem',
+        margin: '0rem auto 18rem auto',
+      }}
+    >
+      <WhiteBar name="Favoris" />
       <Box
         width="100%"
         sx={{
@@ -29,8 +42,8 @@ export default function Favourites() {
           borderRadius: '2rem',
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '2rem',
-          justifyContent: 'flex-start',
+          gap: { gap },
+          justifyContent: { justifyContent },
         }}
       >
         {favouritesList.length === 0 ? (
@@ -69,6 +82,6 @@ export default function Favourites() {
           favouritesList
         )}
       </Box>
-    </div>
+    </Box>
   );
 }

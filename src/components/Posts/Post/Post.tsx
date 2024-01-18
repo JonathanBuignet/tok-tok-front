@@ -134,7 +134,7 @@ export default function Post({
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          maxWidth: '76rem',
+          margin: 'auto',
           borderRadius: '2rem',
           pt: '2rem',
           pb: '2.5rem',

@@ -1,12 +1,10 @@
 import { Box, Stack } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import UserHeader from './UserHeader/UserHeader';
 import LogoHeader from './LogoHeader/LogoHeader';
+import IconButton from '@mui/material/IconButton';
 import NotificationHeader from './Notifications/NotificationHeader';
 import SearchBar from './SearchBar/SearchBar';
-import UserHeader from './UserHeader/UserHeader';
 import search from '../../assets/icons/search.svg';
-
-import './style.scss';
 
 export default function AppHeader() {
   return (
@@ -24,16 +22,16 @@ export default function AppHeader() {
     >
       <Stack direction="row" justifyContent="space-between">
         <LogoHeader />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <Stack direction="row" alignItems="center">
-          <IconButton
+          {/* <IconButton
             className="searchbar-icon"
             sx={{ m: '0px 0px 0px 10px' }}
             aria-label="search"
           >
             <img alt="searchbar icon" src={search} height={25} width={25} />
           </IconButton>
-          <NotificationHeader />
+          <NotificationHeader /> */}
           <UserHeader />
         </Stack>
       </Stack>

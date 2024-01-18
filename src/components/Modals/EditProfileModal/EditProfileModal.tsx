@@ -42,11 +42,11 @@ export default function EditProfileModal({
       aria-describedby="modal-modal-edit"
     >
       <Box
-        className="edit-modal"
+        className="edit-profile-modal-container"
         sx={{
           backgroundColor: 'transparent',
           margin: 'auto',
-          width: '50%',
+          width: '40%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -56,7 +56,7 @@ export default function EditProfileModal({
         <Box
           sx={{
             backgroundColor: 'white',
-            width: '80%',
+            width: '100%',
             m: 'auto',
             p: '5rem',
             borderRadius: '2rem',

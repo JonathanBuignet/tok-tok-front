@@ -30,37 +30,30 @@ interface AddressProps {
 
 export default function SignUp() {
   const errorMessage = useAppSelector((state) => state.user.error);
-
-  // Stockage des valeurs à renseigner lors des appels API
   const [addressValue, setAddressValue] = useState('');
   const [addressProps, setAddressProps] = useState([]);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [city, setCity] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
-  /* State pour afficher ou non la liste des propositions */
 
   const dispatch = useAppDispatch();
-  // Cet effet de bord se déclenche chaque fois que la valeur de l'input "adress" est modifiée
   useEffect(() => {
-    // On recherche les 5 premières addresses correspondant à la valeur
     async function fetchAddress() {
       try {
         const { data } = await axios.get(
           `https://api-adresse.data.gouv.fr/search/?q=${addressValue}&limit=5&autocomplete=0`
         );
-        // et on les stock dans un state pour les afficher ensuite
         setAddressProps(data.features);
       } catch (error) {
-        // console.log(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
       }
     }
     fetchAddress();
   }, [addressValue]);
 
-  // On boucle sur la liste de 5 adresses pour les afficher
   const addressPropsList = addressProps.map((e: AddressProps) => {
-    // Au clic sur l'une des adresses, on stocke les valeurs
     const handleClickAddressItem = (
       event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
     ) => {
@@ -72,14 +65,11 @@ export default function SignUp() {
       setIsEmpty(false);
     };
 
-    // Gestion des événements clavier
     const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === 'Enter') {
         handleClickAddressItem(event);
       }
     };
-
-    // On affiche un item pour chaque adresse de la liste
     return (
       <ListItemButton key={e.properties.label}>
         <div
@@ -108,6 +98,10 @@ export default function SignUp() {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressValue(event.target.value);
+    if (event.target.value.length === 0) {
+      setIsEmpty(true);
+      setAddressProps([]);
+    }
   };
 
   return (
@@ -168,22 +162,22 @@ export default function SignUp() {
       <FormField
         name="email"
         label="Email"
-        type="mail"
-        autoComplete=""
+        type="email"
+        autoComplete="email"
         required
       />
       <FormField
         name="password"
         label="Mot de passe"
         type="password"
-        autoComplete="new-password"
+        autoComplete="off"
         required
       />
       <FormField
         name="confirmation"
         label="Confirmation de mot de passe"
         type="password"
-        autoComplete="new-password"
+        autoComplete="off"
         required
       />
       <Button

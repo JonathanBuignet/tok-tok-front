@@ -2,15 +2,15 @@
 @use '../../../styles/variables' as v;
 
 .form {
-  background: #f0f3fa;
-  display: flex;
+  // background: #f0f3fa;
+  // display: flex;
 
-  font-size: 1.6rem;
-  height: v.$form-height;
-  line-height: v.$form-height;
-  border-radius: 25px;
-  padding: 0.2rem;
-  width:80rem;
+  // font-size: 1.6rem;
+  // height: v.$form-height;
+  // line-height: v.$form-height;
+  // border-radius: 25px;
+  // padding: 0.2rem;
+  width: 100%;
 
   &-input,
   &-button {

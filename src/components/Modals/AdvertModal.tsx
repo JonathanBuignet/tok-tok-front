@@ -74,12 +74,17 @@ export default function AdvertModal() {
           fontStyle: 'normal',
           fontWeight: '500',
           lineHeight: 'normal',
-          p: '1rem 2rem',
+          p: '1rem 1.2rem',
           height: '7rem',
           border: '0px',
         }}
       >
-        Créer une Annonce
+        <Typography className="ajouter-text" fontSize="1.5rem">
+          Créer une Annonce
+        </Typography>
+        <Typography className="ajouter-plus" fontSize="1.6rem">
+          +
+        </Typography>
       </Button>
       <Modal
         open={open}
@@ -91,11 +96,11 @@ export default function AdvertModal() {
         aria-describedby="modal-modal-description"
       >
         <Box
-          className="edit-modal"
+          className="create-advert-modal-container"
           sx={{
             backgroundColor: 'transparent',
             margin: 'auto',
-            width: '50%',
+            width: '30%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -105,7 +110,7 @@ export default function AdvertModal() {
           <Box
             sx={{
               backgroundColor: 'white',
-              width: '80%',
+              width: '100%',
               m: 'auto',
               p: '5rem',
               borderRadius: '2rem',
@@ -122,18 +127,14 @@ export default function AdvertModal() {
               type="text"
               autoComplete="none"
             />
-            {/* Champ contenu */}
-            <AddAdvertField
-              name="content"
-              label="Description"
-              type="text"
-              autoComplete="none"
-              multiline
-              rows={8}
-            />
-            {/* Bouton ajout d'image */}
-            <ImageUploader />
-            <FormControl sx={{ backgroundColor: '#F5F6FA' }} size="small">
+            {/* catégories */}
+            <FormControl
+              sx={{
+                width: '100%',
+                backgroundColor: '#FFF',
+              }}
+              size="medium"
+            >
               <InputLabel id="select-categorie">Catégories</InputLabel>
               <Select
                 labelId="select-categorie"
@@ -155,14 +156,27 @@ export default function AdvertModal() {
                 })}
               </Select>
             </FormControl>
+            {/* Champ description */}
             <AddAdvertField
+              name="content"
+              label="Description"
+              type="text"
+              autoComplete="none"
+              multiline
+              rows={8}
+            />
+            {/* Bouton ajout d'image */}
+            <ImageUploader />
+            {/* prix */}
+            <AddAdvertField
+              className="input-number"
               name="price"
               label="Prix"
               type="number"
               min="0"
               autoComplete="none"
               InputProps={{
-                startAdornment: (
+                endAdornment: (
                   <InputAdornment position="start">€</InputAdornment>
                 ),
               }}
@@ -182,10 +196,12 @@ export default function AdvertModal() {
                 lineHeight: 'normal',
                 mt: '1rem',
                 p: '1.2rem',
+                alignItems: 'center',
+                width: '100%',
                 boxShadow: 0,
               }}
             >
-              Créer l&apos;annonce
+              Publier l&apos;annonce
             </Button>
           </Box>
         </Box>

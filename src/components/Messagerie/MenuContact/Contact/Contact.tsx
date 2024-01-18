@@ -2,13 +2,14 @@ import { Button, Typography } from '@mui/material';
 import { ContactUser } from '../../../../@types';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { fetchMessages } from '../../../../store/reducers/messagerie';
+import { useState } from 'react';
 
 interface ContactProps {
-  conversationId: number;
+  // conversationId: number;
   contact: ContactUser;
-  destinataireId: number;
+  // destinataireId: number;
   setDestinataireId: React.Dispatch<React.SetStateAction<number>>;
-  destinataireName: string;
+  // destinataireName: string;
   setDestinataireName: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -18,6 +19,7 @@ function Contact({
   setDestinataireId,
 }: ContactProps) {
   const dispatch = useAppDispatch();
+  const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
     setDestinataireId(contact.contactInfo.id);
@@ -25,40 +27,38 @@ function Contact({
       `${contact.contactInfo.firstname} ${contact.contactInfo.lastname}`
     );
     dispatch(fetchMessages(contact.contactInfo.id));
+    setIsActive(!isActive);
   };
 
   return (
-    <div>
-      <Button
-        className="contact-btn"
-        onClick={handleClick}
-        key={contact.contactInfo.id}
+    <Button
+      className={`contact-btn ${isActive ? 'active' : ''}`}
+      onClick={handleClick}
+      key={contact.contactInfo.id}
+      sx={{
+        backgroundColor: isActive ? '#03665C' : 'transparent',
+        '&:hover': {
+          backgroundColor: isActive ? '#03665C' : '#03665C',
+        },
+        borderRadius: '2rem',
+        border: '0px',
+        width: '80%',
+      }}
+    >
+      <Typography
         sx={{
-          backgroundColor: '#49c1ac',
-          '&:hover': {
-            backgroundColor: '#6dd4c4',
-          },
-          borderRadius: '2rem',
-          border: '0px',
-          width: '80%',
+          fontSize: '1.3rem',
+          color: isActive ? '#fff' : '#000',
+          fontFamily: 'DM Sans',
+          fontStyle: 'normal',
+          fontWeight: '500',
+          lineHeight: 'normal',
+          p: '1rem 1rem',
         }}
       >
-        <Typography
-          sx={{
-            fontSize: '1.3rem',
-            color: '#fff',
-            fontFamily: 'DM Sans',
-            fontStyle: 'normal',
-            fontWeight: '500',
-            lineHeight: 'normal',
-            p: '1rem 1rem',
-          }}
-        >
-          {' '}
-          {contact.contactInfo.firstname} {contact.contactInfo.lastname}{' '}
-        </Typography>
-      </Button>
-    </div>
+        {contact.contactInfo.firstname} {contact.contactInfo.lastname}{' '}
+      </Typography>
+    </Button>
   );
 }
 

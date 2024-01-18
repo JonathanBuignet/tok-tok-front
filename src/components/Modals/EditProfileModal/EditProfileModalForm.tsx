@@ -126,7 +126,7 @@ export default function EditProfile() {
       </Stack>
 
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-      <Stack direction="row" gap={2}>
+      <Stack direction="row" gap={2} className="edit-profile-form-name">
         <FormField
           name="lastname"
           label="Nom"
@@ -192,7 +192,7 @@ export default function EditProfile() {
         readOnly
       />
 
-      <Stack direction="row" gap={2}>
+      <Stack direction="row" gap={2} className="edit-profile-form-credentials">
         <FormField
           name="email"
           label="Email"

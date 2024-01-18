@@ -23,7 +23,7 @@ function Adverts() {
         width: '82rem',
         position: 'relative',
         padding: '11rem 0rem',
-        margin: 'auto',
+        margin: '0rem auto 18rem auto',
       }}
     >
       <Stack
@@ -37,7 +37,7 @@ function Adverts() {
         <AdvertModal />
       </Stack>
 
-      <ContentAdvert adverts={adverts} context={context} />
+      <ContentAdvert adverts={adverts} context={context} {...adverts} />
     </Box>
   );
 }

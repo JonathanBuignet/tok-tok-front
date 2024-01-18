@@ -8,10 +8,10 @@ export default function calculateTimeSpent(createdAt: number) {
   const days = Math.floor(hours / 24);
 
   if (days > 0) {
-    return `${days} jour${days > 1 ? 's' : ''}`;
+    return `${days} j`;
   }
   if (hours > 0) {
-    return `${hours} heure${hours > 1 ? 's' : ''}`;
+    return `${hours} h`;
   }
-  return `${minutes} minute${minutes > 1 ? 's' : ''}`;
+  return `${minutes} min`;
 }

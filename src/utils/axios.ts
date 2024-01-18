@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://tok-tok-api.onrender.com/',
+  // baseURL: 'http://localhost:3000/',
 });
 
 // Interceptor pour ajouter le Bearer Token aux requêtes sortantes

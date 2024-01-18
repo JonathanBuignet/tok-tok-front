@@ -37,6 +37,7 @@ export interface Advert {
 interface AdvertSubset {
   id: number;
   favorited_by: Favourite[];
+  isFavouritesPage: boolean;
 }
 
 // Pour le profil

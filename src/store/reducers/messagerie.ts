@@ -43,6 +43,7 @@ export const fetchContacts = createAsyncThunk(
     try {
       const { data } = await axiosInstance.get('/contacts');
       return data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new Error(error.response.data.error);
     }
@@ -54,7 +55,6 @@ export const fetchMessages = createAsyncThunk(
   async (destinataireId: number) => {
     try {
       const { data } = await axiosInstance.get(`/messages/${destinataireId}`);
-      console.log('datamessage', data);
       return data;
     } catch (error: any) {
       throw new Error(error.response.data.error);

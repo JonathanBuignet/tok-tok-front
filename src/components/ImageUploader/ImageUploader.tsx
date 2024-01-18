@@ -42,6 +42,7 @@ function ImageUploader() {
         sx={{
           alignItems: 'center',
           gap: '1rem',
+          width: '100%',
           '&:hover': {
             borderRadius: '5rem',
           },

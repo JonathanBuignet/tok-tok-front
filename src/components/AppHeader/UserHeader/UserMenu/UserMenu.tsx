@@ -50,8 +50,16 @@ export default function UserMenu() {
         id="menu-dropdown-header"
       >
         <Menu
-          anchorReference="anchorPosition"
-          anchorPosition={{ top: 135, left: 1700 }}
+          // anchorReference="anchorPosition"
+          // anchorPosition={{ top: 10, left: 90 }}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
           elevation={0}
           id="simple-menu"
           anchorEl={anchorEl}
@@ -60,6 +68,7 @@ export default function UserMenu() {
           onClose={handleClose}
           disableScrollLock
           sx={{
+            marginTop: '4rem',
             '& .MuiMenu-paper': {
               borderRadius: '2rem',
             },

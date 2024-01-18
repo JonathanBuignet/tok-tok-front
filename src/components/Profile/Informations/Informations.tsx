@@ -48,7 +48,8 @@ export default function Informations({
           src={userInfo?.banner}
           alt="banner"
           style={{
-            height: '17rem',
+            width: '100%',
+            height: '22rem',
             objectFit: 'cover',
             borderRadius: '2rem',
           }}
@@ -56,18 +57,21 @@ export default function Informations({
         {/* On vérifie si on est sur notre propre profil */}
         {isMine(currentUserSlug) && (
           <IconButton
+            className="profile-edit-banner"
             onClick={handleOpenBanner}
             component="label"
             sx={{
               position: 'absolute',
-              left: '94%',
-              top: '5%',
+              left: '93%',
+              top: '0%',
               color: '#02B8AC',
+              width: '5rem',
+              height: '5rem',
             }}
           >
             <ModeEditIcon
-              className="profile-edit-banner"
-              sx={{ fontSize: '2rem !important' }}
+              color="secondary"
+              sx={{ fontSize: '20px !important' }}
             />
           </IconButton>
         )}
@@ -104,11 +108,10 @@ export default function Informations({
             style={{
               position: 'relative',
               top: '-8rem',
-              width: '12.2rem',
-              height: '12.2rem',
               objectFit: 'cover',
               borderRadius: '4rem',
               border: '0.5rem solid #FFF',
+              overflow: 'hidden',
             }}
           />
           <Stack

@@ -7,6 +7,7 @@ interface ContentUserAdvertProps {
 }
 
 function ContentUserAdvert({ userAdverts }: ContentUserAdvertProps) {
+  // console.log(userAdverts);
   return (
     <div>
       {userAdverts && (

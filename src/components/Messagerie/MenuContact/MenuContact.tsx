@@ -15,28 +15,24 @@ interface MenuContactProps {
 
 function MenuContact({
   contacts,
-  destinataireId,
+  // destinataireId,
   setDestinataireId,
-  destinataireName,
+  // destinataireName,
   setDestinataireName,
 }: MenuContactProps) {
-  return (
-    <div>
-      {contacts?.map((e) => {
-        return (
-          <Contact
-            key={e.id}
-            conversationId={e.id}
-            contact={e}
-            destinataireId={destinataireId}
-            setDestinataireId={setDestinataireId}
-            destinataireName={destinataireName}
-            setDestinataireName={setDestinataireName}
-          />
-        );
-      })}
-    </div>
-  );
+  return contacts?.map((e) => {
+    return (
+      <Contact
+        key={e.id}
+        // conversationId={e.id}
+        contact={e}
+        // destinataireId={destinataireId}
+        setDestinataireId={setDestinataireId}
+        // destinataireName={destinataireName}
+        setDestinataireName={setDestinataireName}
+      />
+    );
+  });
 }
 
 export default MenuContact;
