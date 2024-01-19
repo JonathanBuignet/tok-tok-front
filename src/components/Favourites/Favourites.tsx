@@ -36,6 +36,7 @@ export default function Favourites() {
     >
       <WhiteBar name="Favoris" />
       <Box
+        className="cards-container"
         width="100%"
         sx={{
           my: '2rem',

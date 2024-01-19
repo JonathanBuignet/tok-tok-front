@@ -88,7 +88,7 @@ export default function EditProfile() {
       </ListItemButton>
     );
   });
-
+  // const [value, setValue] = useState(inputText || '');
   return (
     <>
       <Stack direction="column" alignItems="center" justifyContent="center">
@@ -133,6 +133,7 @@ export default function EditProfile() {
           type="text"
           autoComplete="family-name"
           placeholder={user.lastname}
+          // inputText={user.lastname}
         />
         <FormField
           name="firstname"
@@ -140,6 +141,7 @@ export default function EditProfile() {
           type="text"
           autoComplete="given-name"
           placeholder={user.firstname}
+          // inputText={user.firstname}
         />
       </Stack>
 
@@ -151,6 +153,7 @@ export default function EditProfile() {
         multiline
         rows={4}
         placeholder={user.description}
+        // inputText={user.description}
       />
       <FormField
         name="address"
@@ -162,6 +165,7 @@ export default function EditProfile() {
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setAddressValue(event.currentTarget.value);
         }}
+        // inputText={user.address}
       />
 
       {isEmpty && addressPropsList}
@@ -199,12 +203,14 @@ export default function EditProfile() {
           type="mail"
           autoComplete="none"
           placeholder={user.email}
+          // inputText={user.email}
         />
 
         <FormField
           name="password"
           label="Mot de passe"
           type="password"
+          placeholder="*****"
           autoComplete="none"
         />
       </Stack>

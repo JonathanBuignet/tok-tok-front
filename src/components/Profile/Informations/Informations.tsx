@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { User } from '../../../@types';
 import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 import EditBannerModal from './EditBannerModal/EditBannerModal';
+import { useAppSelector } from '../../../hooks/redux';
 
 interface InformationsProps {
   userInfo: User;
@@ -17,6 +18,7 @@ export default function Informations({
 }: InformationsProps) {
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
+  const user2 = useAppSelector((state) => state.user);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;
@@ -45,7 +47,7 @@ export default function Informations({
       <Stack sx={{ position: 'relative' }}>
         <img
           className="profile-banner"
-          src={userInfo?.banner}
+          src={userInfo.banner}
           alt="banner"
           style={{
             width: '100%',
@@ -103,7 +105,7 @@ export default function Informations({
           {/* Photo de profil */}
           <img
             className="profile-avatar"
-            src={userInfo?.thumbnail}
+            src={userInfo.thumbnail}
             alt="profile_picture"
             style={{
               position: 'relative',

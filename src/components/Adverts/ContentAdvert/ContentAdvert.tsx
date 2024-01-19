@@ -17,6 +17,7 @@ function ContentAdvert({ adverts, context }: ContentAdvertProps) {
     <div>
       {adverts && (
         <Stack
+          className="cards-container"
           direction="row"
           flexWrap="wrap"
           justifyContent={justifyContent}

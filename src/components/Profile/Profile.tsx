@@ -10,11 +10,14 @@ import Toggle from './Toggle';
 
 export default function Profile() {
   const user = useAppSelector((state) => state.profile);
+  const user2 = useAppSelector((state) => state.user);
   const currentUserSlug = useAppSelector((state) => state.user.slug);
   const dispatch = useAppDispatch();
   const { slug } = useParams();
   const [display, setDisplay] = useState('publications');
   const context = 'profile';
+
+  const goodProfileInfo = slug && slug !== user2.slug ? user : user2;
 
   // On filtre les réponses parmi toutes les publications
   const userPosts = user.posts.filter((p) => {
@@ -30,8 +33,12 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    dispatch(fetchProfile(slug));
-  }, [dispatch, slug]);
+    if (slug && slug !== user2.slug) {
+      dispatch(fetchProfile(slug));
+    } else {
+      dispatch(fetchProfile(user2.slug));
+    }
+  }, [dispatch, slug, user2.slug]);
 
   return (
     <Stack
@@ -45,7 +52,10 @@ export default function Profile() {
       mx="auto"
     >
       {/* Banniere + infos profil + bouton edit */}
-      <Informations userInfo={user} currentUserSlug={currentUserSlug} />
+      <Informations
+        userInfo={goodProfileInfo}
+        currentUserSlug={currentUserSlug}
+      />
 
       {/* Toggle button Publications / Annonces */}
       <Stack className="profile-toggle-button" direction="row" paddingY="2rem">

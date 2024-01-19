@@ -85,7 +85,7 @@ export default function Menu() {
             component={NavLink}
             to="/messagerie"
           >
-            <Badge
+            {/* <Badge
               sx={{
                 '& .MuiBadge-badge': {
                   color: 'WHITE',
@@ -94,9 +94,9 @@ export default function Menu() {
               }}
               badgeContent={5477}
               color="primary"
-            >
-              <MessagerieSVG />
-            </Badge>
+            > */}
+            <MessagerieSVG />
+            {/* </Badge> */}
           </ListItemButton>
         </MenuItem>
       </MenuList>

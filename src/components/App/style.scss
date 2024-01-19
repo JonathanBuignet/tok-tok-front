@@ -13,13 +13,6 @@
   }
 }
 
-.favorites-container {
-  width: 82rem;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 11rem 0;
-}
 
 .messages-container {
   height: 85vh;
@@ -32,6 +25,7 @@
 //profil
 .profile-avatar {
   height: 13rem;
+  width: 13rem;
 }
 
 //Signup/Login
@@ -158,7 +152,7 @@ input[type='number'] {
 // Responsive < 1250px
 @media screen and (max-width: 1250px) {
   //Containers
-  .favorites-container,
+  .favourite-container,
   .advert-container,
   .adverts-container,
   .profile-container,
@@ -190,13 +184,12 @@ input[type='number'] {
   }
 
   //Advert
-  .advert-card {
-    margin: auto;
+  .cards-container{
+    justify-content: space-between !important;
   }
-
   .card {
     justify-content: space-between;
-    width: 48%;
+    width: 45%;
     height: 34rem;
   }
   .card-image {
@@ -228,12 +221,6 @@ input[type='number'] {
   .searchbar-container {
     max-width: 250px;
   }
-
-  //Advert
-  .advert-card {
-    width: 100%;
-  }
-
   //Modal
   .authform-container {
     width: 100vw;
@@ -247,7 +234,7 @@ input[type='number'] {
 
 //Responsive < 800px
 @media screen and (max-width: 800px) {
-  .favorites-container,
+  .favourite-container,
   .advert-container,
   .adverts-container,
   .profile-container,
@@ -256,8 +243,6 @@ input[type='number'] {
   }
   .messages-container {
     width: 100vw !important;
-    //background-color: red;
-    // margin: 0px !important;
   }
 
   //Messagerie
@@ -284,6 +269,7 @@ input[type='number'] {
   }
   .profile-avatar {
     height: 10rem;
+    width: 10rem;
   }
   .user-identity {
     display: none;
@@ -298,6 +284,11 @@ input[type='number'] {
   }
   .ajouter-plus {
     display: block;
+  }
+  .card {
+    width: 45%;
+    height: 34rem;
+    justify-content: space-between;
   }
   //Modal
   .edit-advert-modal-container,
@@ -323,6 +314,11 @@ input[type='number'] {
     width: 100vw !important;
   }
   //Advert
+  .adverts-navigation{
+    flex-direction: column !important;
+    gap: 0rem !important;
+    margin-bottom: 2rem !important;
+  }
   .adverts-sortbar {
     gap: 0 !important;
     padding: 0;
@@ -337,6 +333,13 @@ input[type='number'] {
   .card-image {
     width: 100%;
     height: 16rem;
+  }
+  .ajouter-text {
+    display: block
+    
+  }
+  .ajouter-plus {
+    display: none;
   }
 
   //Profil

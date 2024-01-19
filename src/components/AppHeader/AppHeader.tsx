@@ -1,10 +1,10 @@
 import { Box, Stack } from '@mui/material';
 import UserHeader from './UserHeader/UserHeader';
 import LogoHeader from './LogoHeader/LogoHeader';
-import IconButton from '@mui/material/IconButton';
-import NotificationHeader from './Notifications/NotificationHeader';
-import SearchBar from './SearchBar/SearchBar';
-import search from '../../assets/icons/search.svg';
+// import IconButton from '@mui/material/IconButton';
+// import NotificationHeader from './Notifications/NotificationHeader';
+// import SearchBar from './SearchBar/SearchBar';
+// import search from '../../assets/icons/search.svg';
 
 export default function AppHeader() {
   return (

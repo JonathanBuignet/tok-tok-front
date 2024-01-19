@@ -1,9 +1,14 @@
 import { Box, Modal } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchProfile } from '../../../store/reducers/profile';
 import { edit } from '../../../store/reducers/user';
 import EditProfileModalForm from './EditProfileModalForm';
+import {
+  fetchAdverts,
+  fetchUserAdverts,
+} from '../../../store/reducers/adverts';
+import { fetchPosts } from '../../../store/reducers/publications';
 
 interface EditProfileModalProps {
   open: boolean;
@@ -15,7 +20,8 @@ export default function EditProfileModal({
   setOpen,
 }: EditProfileModalProps) {
   const dispatch = useAppDispatch();
-  const { slug } = useParams();
+  // const { slug } = useParams();
+  const user = useAppSelector((state) => state.user);
 
   const handleCloseModal = () => setOpen(false);
 
@@ -23,11 +29,11 @@ export default function EditProfileModal({
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     dispatch(edit(formData));
-    setTimeout(async () => {
-      if (slug) {
-        dispatch(fetchProfile(slug));
-      }
-    }, 800);
+
+    dispatch(fetchProfile(user.slug));
+    dispatch(fetchUserAdverts(user.id));
+    dispatch(fetchPosts());
+
     handleCloseModal();
   };
 
