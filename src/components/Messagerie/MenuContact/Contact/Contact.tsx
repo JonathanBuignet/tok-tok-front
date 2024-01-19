@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { Button, Typography } from '@mui/material';
 import { ContactUser } from '../../../../@types';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { fetchMessages } from '../../../../store/reducers/messagerie';
-import { useState } from 'react';
 
 interface ContactProps {
   // conversationId: number;
@@ -38,7 +38,8 @@ function Contact({
       sx={{
         backgroundColor: isActive ? '#03665C' : 'transparent',
         '&:hover': {
-          backgroundColor: isActive ? '#03665C' : '#03665C',
+          backgroundColor: isActive ? '#03665C' : '#f5f5f5',
+          color: isActive ? '#fff' : '#000',
         },
         borderRadius: '2rem',
         border: '0px',

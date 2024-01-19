@@ -10,6 +10,7 @@ import Toggle from './Toggle';
 
 export default function Profile() {
   const user = useAppSelector((state) => state.profile);
+  const user2 = useAppSelector((state) => state.user);
   const currentUserSlug = useAppSelector((state) => state.user.slug);
   const dispatch = useAppDispatch();
   const { slug } = useParams();
@@ -30,8 +31,8 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    dispatch(fetchProfile(slug));
-  }, [dispatch, slug]);
+    dispatch(fetchProfile(user2.slug));
+  }, [dispatch, user2.slug]);
 
   return (
     <Stack

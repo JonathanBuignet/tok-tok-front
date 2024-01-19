@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { User } from '../../../@types';
 import EditProfileModal from '../../Modals/EditProfileModal/EditProfileModal';
 import EditBannerModal from './EditBannerModal/EditBannerModal';
+import { useAppSelector } from '../../../hooks/redux';
 
 interface InformationsProps {
   userInfo: User;
@@ -17,6 +18,7 @@ export default function Informations({
 }: InformationsProps) {
   const [open, setOpen] = useState(false);
   const [openBanner, setOpenBanner] = useState(false);
+  const user2 = useAppSelector((state) => state.user);
 
   const isMine = (slugToTest: string) => {
     return userInfo.slug === slugToTest;
@@ -45,7 +47,7 @@ export default function Informations({
       <Stack sx={{ position: 'relative' }}>
         <img
           className="profile-banner"
-          src={userInfo?.banner}
+          src={user2.banner}
           alt="banner"
           style={{
             width: '100%',
@@ -103,7 +105,7 @@ export default function Informations({
           {/* Photo de profil */}
           <img
             className="profile-avatar"
-            src={userInfo?.thumbnail}
+            src={user2.thumbnail}
             alt="profile_picture"
             style={{
               position: 'relative',
@@ -131,7 +133,7 @@ export default function Informations({
               fontWeight="700"
               lineHeight="normal"
             >
-              {userInfo.firstname} {userInfo.lastname}
+              {user2.firstname} {user2.lastname}
             </Typography>
             {/* Ville de l'utilisateur */}
             <Typography
@@ -145,7 +147,7 @@ export default function Informations({
               sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
             >
               <RoomTwoToneIcon sx={{ fontSize: '1.8rem', color: '#888' }} />
-              {userInfo.city}
+              {user2.city}
             </Typography>
           </Stack>
         </Stack>
@@ -204,7 +206,7 @@ export default function Informations({
           width="100%"
         >
           {/* Blabla descriptif */}
-          {userInfo.description}
+          {user2.description}
         </Typography>
       </Stack>
     </Stack>

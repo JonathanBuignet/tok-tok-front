@@ -7,14 +7,15 @@ interface ContentUserAdvertProps {
 }
 
 function ContentUserAdvert({ userAdverts }: ContentUserAdvertProps) {
-  // console.log(userAdverts);
+  const estPaire = userAdverts.length % 2 === 0;
+  const gap = estPaire ? '3.2rem' : '2rem';
   return (
-    <div>
+    <Stack className="ContentUserAdvert">
       {userAdverts && (
         <Stack
           direction="row"
           justifyContent="flex-start"
-          gap="2rem"
+          gap={gap}
           flexWrap="wrap"
         >
           {userAdverts.map((advert) => (
@@ -22,7 +23,7 @@ function ContentUserAdvert({ userAdverts }: ContentUserAdvertProps) {
           ))}
         </Stack>
       )}
-    </div>
+    </Stack>
   );
 }
 

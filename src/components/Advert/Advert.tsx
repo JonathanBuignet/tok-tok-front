@@ -94,6 +94,7 @@ export default function Advert() {
         gap="1.5rem"
         sx={{ p: '2rem', borderRadius: '2rem', backgroundColor: '#fff' }}
       >
+        {/* header advert */}
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -144,6 +145,7 @@ export default function Advert() {
           />
         </Stack>
 
+        {/* Photo */}
         <Box
           sx={{
             display: 'flex',
@@ -152,10 +154,22 @@ export default function Advert() {
             mx: 'auto',
             pt: '2rem',
             pb: '2.5rem',
+            width: '100%',
+            height: '30rem',
           }}
         >
           {advert?.images && advert.images.length > 1 && (
-            <IconButton aria-label="delete" onClick={handleClickPrevious}>
+            <IconButton
+              aria-label="précédent"
+              onClick={handleClickPrevious}
+              sx={{
+                my: 'auto',
+                height: '50%',
+                '&:hover': {
+                  borderRadius: '5rem',
+                },
+              }}
+            >
               <ArrowBackIosIcon />
             </IconButton>
           )}
@@ -173,12 +187,23 @@ export default function Advert() {
             }}
           />
           {advert?.images && advert.images.length > 1 && (
-            <IconButton aria-label="delete" onClick={handleClickNext}>
+            <IconButton
+              aria-label="suivant"
+              onClick={handleClickNext}
+              sx={{
+                my: 'auto',
+                height: '100%',
+                '&:hover': {
+                  borderRadius: '5rem',
+                },
+              }}
+            >
               <ArrowForwardIosIcon />
             </IconButton>
           )}
         </Box>
 
+        {/* Informations advert */}
         <Stack
           direction="row"
           gap="2rem"
