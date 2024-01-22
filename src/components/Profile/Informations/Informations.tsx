@@ -120,10 +120,6 @@ export default function Informations({
             direction="column"
             justifyContent="center"
             className="profile-name-city"
-            /* className="profile-information-name"
-            direction="column"
-            justifyContent="center"
-*/
           >
             {/* Nom de l'utilisateur */}
             <Typography

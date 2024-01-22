@@ -7,6 +7,7 @@ import ContentAdvert from '../Adverts/ContentAdvert/ContentAdvert';
 import ContentPost from '../Posts/Post/ContentPost/ContentPost';
 import Informations from './Informations/Informations';
 import Toggle from './Toggle';
+import { User } from '../../@types';
 
 export default function Profile() {
   const user = useAppSelector((state) => state.profile);
@@ -17,7 +18,7 @@ export default function Profile() {
   const [display, setDisplay] = useState('publications');
   const context = 'profile';
 
-  const goodProfileInfo = slug && slug !== user2.slug ? user : user2;
+  const goodProfileInfo = (slug && slug !== user2.slug ? user : user2) as User;
 
   // On filtre les réponses parmi toutes les publications
   const userPosts = user.posts.filter((p) => {
